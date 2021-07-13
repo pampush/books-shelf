@@ -4,9 +4,14 @@ import Book from './Book';
 
 function Shelf() {
   return (
-    <div>
+    <>
       <Book />
-    </div>
+      <Book />
+      <Book />
+      <Book />
+      <Book />
+      <Book />
+    </>
   );
 }
 

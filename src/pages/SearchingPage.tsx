@@ -6,7 +6,7 @@ function SearchingPage() {
   return (
     <div className="search">
       <header className="header">
-        <h1>Books ebooks</h1>
+        <h1>Explore new horizons</h1>
         <div className="searchform">
           <SearchForm />
         </div>
