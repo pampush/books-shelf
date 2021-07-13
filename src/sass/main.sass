@@ -1,0 +1,28 @@
+@use 'vars'
+@use 'mixins'
+
+@use './components/searchingPage'
+
+html
+  font-size: 10px
+
+h1, h2, h3, h4, h5
+  margin: 0 
+
+body
+  font-family: 'Roboto', sans-serif
+  box-sizing: border-box
+  background-color: vars.$body-bg-color
+
+*, *:before, *:after
+  box-sizing: inherit
+
+.app
+  min-height: 100vh
+  max-width: vars.$search-width-lg
+  background-color: vars.$search-bg-color
+  margin: 0 auto
+  padding: 2rem 5rem 0 5rem
+  @include mixins.md
+    max-width: vars.$search-width-md
+

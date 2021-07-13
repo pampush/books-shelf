@@ -1,11 +1,21 @@
-import React from 'react'
+import React from 'react';
+import SearchForm from '../components/SearchForm';
+import Shelf from '../components/Shelf';
 
 function SearchingPage() {
   return (
-    <div>
-      
+    <div className="search">
+      <header className="header">
+        <h1>Books ebooks</h1>
+        <div className="searchform">
+          <SearchForm />
+        </div>
+      </header>
+      <main className="shelf">
+        <Shelf />
+      </main>
     </div>
-  )
+  );
 }
 
-export default SearchingPage
+export default SearchingPage;
