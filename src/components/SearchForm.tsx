@@ -1,11 +1,16 @@
 import React from 'react';
 import { ReactComponent as SearchButton } from '../assets/search.svg';
+import { useDispatch } from 'react-redux';
+
+import { setBooks } from '../redux/actions/books';
 
 function SearchForm() {
+  const dispatch = useDispatch();
+
   return (
     <>
       <div className="search-text">
-        <span className="search-text__icon-container">
+        <span className="search-text__icon-container" onClick={() => dispatch(setBooks())}>
           <SearchButton className="search-text__search-icon" />
         </span>
         <input
