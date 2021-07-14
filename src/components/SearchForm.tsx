@@ -1,41 +1,33 @@
 import React from 'react';
-import { ReactComponent as SearchButton } from '../assets/search.svg';
-import { useDispatch } from 'react-redux';
 
 import { setBooks } from '../redux/actions/books';
+import DatalistSelect from './searchForm/DatalistSelectField';
+import SearchField from './searchForm/SearchField';
+import SelectField from './searchForm/SelectField';
 
 function SearchForm() {
-  const dispatch = useDispatch();
-
   return (
     <>
-      <div className="search-text">
-        <span className="search-text__icon-container" onClick={() => dispatch(setBooks())}>
-          <SearchButton className="search-text__search-icon" />
-        </span>
-        <input
-          className="search__field search-text__field"
+      <div className="search-field">
+        <SearchField
           type="text"
-          placeholder="search"
-          required
+          placeholder="Search books"
+          required={true}
+          size="small"
+          justify="fluid"
+          handleClick={setBooks}
         />
       </div>
-      <div className="book-categories">
-        <span>Book category</span>
-        <input list="book-categories" className="search__field" placeholder="choose category" />
-        <datalist id="book-categories">
-          <option value="all">all</option>
-          <option value="novel">novel</option>
-          <option value="science">science</option>
-        </datalist>
+      <div className="datalist-select-field">
+        <DatalistSelect
+          label="Book category"
+          options={['all', 'novel', 'science']}
+          placeholder="Choose category"
+          size="small"
+        />
       </div>
-      <div className="sortby">
-        <span>Sort by</span>
-        <select className="search__field">
-          <option value="relevance">relevance</option>
-          <option value="date">date</option>
-          <option value="price">price</option>
-        </select>
+      <div className="select-field">
+        <SelectField label="Sort by" size="small" options={['relevance', 'price', 'date']} />
       </div>
     </>
   );

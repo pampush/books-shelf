@@ -1,16 +1,20 @@
 @use '../utils'
+@use '../mixins'
 
 .header
   display: flex
   flex-direction: column
   align-items: center
   font-size: 2.2rem
-
+  @include mixins.sm
+    font-size: 1.6rem
+  @include mixins.xs
+    font-size: 1.4rem
 .searchform
-  display: grid
-  grid-template-columns: 1fr 1fr
-  grid-template-rows: 1fr 1fr  
-  color: #FFFFFF
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
+  align-items: center
   margin: 2rem
   border-radius: 1.5rem
   padding: 4rem 14rem
@@ -18,43 +22,19 @@
   background-image: url('../../assets/pexels-yogendra-singh-731510.jpg')
   background-position: center
   background-size: cover
+  @include mixins.sm
+    padding: 2rem 4rem
+  @include mixins.xs  
+    justify-content: center
 
-
-.search__field
-  padding: 1rem
-  border-radius: 1.5rem
-  border-style: none
-
-.search-text
-  @extend %center
-  align-items: stretch
-  justify-self: flex-start
-  grid-row: 1
-  grid-column: 1 / 3
-  background-color: #FFFFFF
-  border-radius: 1.5rem
-  margin-bottom: 2rem
-  &__search-icon
-    height: 3rem
-    transform: translateY(40%)
-  &__icon-container
-    display: inline-block
-    padding: 0rem 1rem
-    cursor: pointer
-
-.search-datalist
-
-.book-categories
-  @extend %center
-  flex-direction: column
-  align-items: flex-start
-  grid-row: 2
-  grid-column: 1
-
-.sortby
-  @extend %center
-  flex-direction: column
-  align-items: flex-end
-  grid-row: 2
-  grid-column: 2
-
+.search-field
+  flex-basis: 100%
+  width: 20rem
+  margin: 1rem
+.select-field, .datalist-select-field
+  width: 30rem
+  margin: 1rem
+  @include mixins.md
+    width: 24rem
+  @include mixins.sm
+    width: 18rem
