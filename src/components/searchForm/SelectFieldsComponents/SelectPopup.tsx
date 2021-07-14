@@ -6,11 +6,11 @@ const SelectPopup = styled(SPopup)`
   top: 100%;
   left: 0;
   width: 100%;
+  max-height: 20rem;
   border-radius: 0.5rem;
   background-color: #ffffff;
   box-shadow: 0 0 0.5rem 0 rgb(118, 118, 118);
-  display: 'flex';
-  flex-direction: column;
+  overflow-y: auto;
   cursor: pointer;
   z-index: 2;
   & div {
@@ -52,7 +52,7 @@ function SPopup(props: SPopup) {
       {props.open && (
         <div ref={ref} className={props.className}>
           {props.items.map((item, i) => (
-            <div key={i} onClick={() => props.handleSelect(item)}>
+            <div key={`${item}+${i}`} onClick={() => props.handleSelect(item)}>
               {item}
             </div>
           ))}

@@ -10,7 +10,8 @@ import SelectPopup from './SelectFieldsComponents/SelectPopup';
 import IconContainer from './IconContainer';
 
 /**
- * Custom input-datalist element. The elements can be resized, position
+ * Custom input-datalist element. The elements can be resized, text search was implemented by
+ * array prototype functions.
  */
 
 type Size = { small: string; regular: string };
@@ -36,7 +37,7 @@ function DatalistSelectField({
   size = 'regular',
 }: DatalistSelectFieldProps) {
   const [openList, setOpenList] = React.useState<boolean>(false);
-  const [selectedItem, setSelectedItem] = React.useState<string>(placeholder);
+  const [selectedItem] = React.useState<string>(placeholder);
   const [filterText, setFilterText] = React.useState<string>('');
 
   return (
@@ -50,7 +51,7 @@ function DatalistSelectField({
           className=""
           open={openList}
           onClose={() => setOpenList(false)}
-          handleSelect={(item: string) => setSelectedItem(item)}
+          handleSelect={(item: string) => setFilterText(item)}
         />
 
         {/* <Text>{selectedItem}</Text> */}

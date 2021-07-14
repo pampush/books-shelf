@@ -21,7 +21,17 @@ function SearchForm() {
       <div className="datalist-select-field">
         <DatalistSelect
           label="Book category"
-          options={['all', 'novel', 'science']}
+          options={[
+            'all',
+            'novel',
+            'science',
+            'all',
+            'novel',
+            'science',
+            'all',
+            'novel',
+            'science',
+          ]}
           placeholder="Choose category"
           size="small"
         />

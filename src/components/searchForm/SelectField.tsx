@@ -22,6 +22,11 @@ interface SelectFieldProps {
   size?: keyof Size;
 }
 
+/**
+ *  simple custom select
+ * @param param0 size - union of 'small', 'regular', 'default'
+ * @returns
+ */
 function Select({ label, options, size = 'regular' }: SelectFieldProps) {
   const [optionItems] = React.useState(options);
   const [selectedItem, setSelectedItem] = React.useState<string>('');
@@ -43,12 +48,6 @@ function Select({ label, options, size = 'regular' }: SelectFieldProps) {
 
         <Text>{selectedItem}</Text>
         <IconContainer size={size}>{openItem ? <ArrowUp /> : <ArrowDowm />}</IconContainer>
-        <input
-          value={selectedItem}
-          hidden
-          onChange={() => {
-            console.log('');
-          }}></input>
       </SelectFieldContainer>
     </InputContainer>
   );
