@@ -12,7 +12,6 @@ interface SelectFieldContainerProps {
 
 const SelectFieldContainer = styled.div`
   display: flex;
-  position: relative;
   border-radius: 1.5rem;
   padding-left: 1rem;
   background-color: #ffffff;

@@ -34,9 +34,6 @@ function Select({ label, options, size = 'regular' }: SelectFieldProps) {
 
   return (
     <InputContainer>
-      <Label selected={Boolean(selectedItem)} opened={openItem}>
-        {label}
-      </Label>
       <SelectFieldContainer tabIndex={3} size={size} onClick={() => setOpenItems(true)}>
         <SelectPopup
           items={optionItems}
@@ -46,6 +43,9 @@ function Select({ label, options, size = 'regular' }: SelectFieldProps) {
           handleSelect={(item: string) => setSelectedItem(item)}
         />
 
+        <Label selected={Boolean(selectedItem)} opened={openItem}>
+          {label}
+        </Label>
         <Text>{selectedItem}</Text>
         <IconContainer size={size}>{openItem ? <ArrowUp /> : <ArrowDowm />}</IconContainer>
       </SelectFieldContainer>

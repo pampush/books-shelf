@@ -42,9 +42,6 @@ function DatalistSelectField({
 
   return (
     <InputContainer>
-      <Label selected={Boolean(selectedItem)} opened={openList}>
-        {label}
-      </Label>
       <SelectFieldContainer tabIndex={2} size={size} onClick={() => setOpenList(true)}>
         <SelectPopup
           items={options.filter((item) => item.includes(filterText))}
@@ -54,7 +51,10 @@ function DatalistSelectField({
           handleSelect={(item: string) => setFilterText(item)}
         />
 
-        {/* <Text>{selectedItem}</Text> */}
+        <Label selected={Boolean(selectedItem)} opened={openList}>
+          {label}
+        </Label>
+
         <OptionsFilter
           value={filterText}
           onChange={(e) => {

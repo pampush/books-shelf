@@ -11,12 +11,12 @@ const InputLabel = styled.label`
   position: absolute;
   top: 0;
   left: 1rem;
+  pointer-events: none;
   transform-origin: top left;
   transform: translateY(
     ${(props: LabelProps) => (props.selected || props.opened ? '0' : '3.2rem')}
   );
   transition: all 0.2s ease;
-  z-index: 1;
   @media (max-width: 960px) {
     transform: translateY(
       ${(props: LabelProps) => (props.selected || props.opened ? '0' : '3.6rem')}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { setBooks } from '../redux/actions/books';
+import * as booksActions from '../redux//books/actionCreators';
 import DatalistSelect from './searchForm/DatalistSelectField';
 import SearchField from './searchForm/SearchField';
 import SelectField from './searchForm/SelectField';
@@ -14,7 +14,7 @@ function SearchForm() {
           placeholder="Search books"
           required={true}
           size="small"
-          handleClick={setBooks}
+          handleClick={booksActions.fetchBooks}
         />
       </div>
       <div className="datalist-select-field">
