@@ -2,7 +2,9 @@ import React from 'react';
 import { ReactComponent as SearchButton } from '../../assets/search.svg';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+
 import InputContainer from './InputContainer';
+import { Size } from './types';
 
 /**
  * simple text input field with search icon
@@ -11,9 +13,6 @@ import InputContainer from './InputContainer';
 interface StyledSearchFieldProps {
   size: keyof Size;
 }
-
-type Size = { small: string; regular: string };
-type Justify = { fluid: string; default: string };
 
 const StyledSearchField = styled.div`
   display: flex;
@@ -56,28 +55,33 @@ interface SearchFieldProps {
   type: string;
   placeholder: string;
   size?: keyof Size;
-  justify?: keyof Justify;
   required: boolean;
-  handleClick: () => void;
+  handleClick: (request: string) => void;
 }
 
 function SearchField({
   type,
   placeholder,
   required,
-  //justify = 'default',
   handleClick,
   size = 'regular',
 }: SearchFieldProps) {
   const dispatch = useDispatch();
+  const [request, setRequest] = React.useState<string>('');
 
   return (
     <InputContainer>
       <StyledSearchField size={size} tabIndex={1}>
-        <IconContainer size={size} onClick={() => dispatch(handleClick())}>
+        <IconContainer size={size} onClick={() => dispatch(handleClick(request))}>
           <SearchButton />
         </IconContainer>
-        <InputField type={type} placeholder={placeholder} required={required} />
+        <InputField
+          type={type}
+          value={request}
+          placeholder={placeholder}
+          onChange={(e) => setRequest(e.target.value)}
+          required={required}
+        />
       </StyledSearchField>
     </InputContainer>
   );

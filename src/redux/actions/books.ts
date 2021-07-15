@@ -1,20 +1,19 @@
 import { ActionCreator, Dispatch } from 'redux';
 import axios from 'axios';
 
-import { BOOKS_API_ENDPOINT } from '../constants';
-import { Book } from '../types';
+import { BOOKS_API_ENDPOINT, MAX_RESULTS } from '../constants';
+import { Book, Action } from '../types';
 
 /**
- *  plain action
+ *  plain action type
  */
-export type Action = { type: 'SET_BOOKS'; payload: Book[] };
 
 /**
- *
+ * fetch books by request string
  * @returns returns promise either fulfilled or rejected
  */
 export const setBooks =
-  () =>
+  (request: string) =>
   async (dispatch: Dispatch<Action>): Promise<string> => {
     try {
       const { data: response } = await axios.get<{
@@ -23,7 +22,7 @@ export const setBooks =
         items: Book[];
       }>(
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        `${BOOKS_API_ENDPOINT}/volumes?q=pride+prejudice&filter=ebooks&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`,
+        `${BOOKS_API_ENDPOINT}/volumes?q=${request}&maxResults=${MAX_RESULTS}&filter=ebooks&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`,
       );
 
       dispatch(setBooksAction(response.items));

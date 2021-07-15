@@ -1,35 +1,41 @@
 import { Reducer } from 'redux';
 
-import { Book } from '../types';
-import { Action } from '../actions/books';
+import { Book, Action } from '../types';
 
 const initialState = {
-  books: {},
+  items: {},
+  isLoaded: false,
 };
 
-/**
- * typeof redux state
- */
-interface State {
-  readonly books: { [id: string]: Book };
+export interface BooksState {
+  items: { [id: string]: Book };
+  isLoaded: boolean;
 }
-
 /**
  * yeah, I know about combineReducers : \
  * @param state current application state
  * @param action action invoked by a user
  * @returns new state
  */
-export const reducer: Reducer<State, Action> = (state = initialState, action) => {
+export const books: Reducer<BooksState, Action> = (state = initialState, action) => {
   console.log(action.payload);
   switch (action.type) {
     case 'SET_BOOKS':
-      const newBooks = action.payload.reduce((memo, book) => ({ ...memo, [book.id]: book }), {});
+      const newBooks: { [key: string]: Book } = action.payload.reduce(
+        (memo, item) => ({ ...memo, [item.id]: item }),
+        {},
+      );
       return {
         ...state,
-        books: {
-          ...newBooks,
-        },
+        items: newBooks,
+        isLoaded: true,
+      };
+    case 'SET_BOOKS_LOADED':
+      const books = { ...state.items };
+      return {
+        ...state,
+        items: books,
+        isLoading: action.payload,
       };
 
     default:

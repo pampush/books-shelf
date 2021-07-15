@@ -14,7 +14,6 @@ function SearchForm() {
           placeholder="Search books"
           required={true}
           size="small"
-          justify="fluid"
           handleClick={setBooks}
         />
       </div>
