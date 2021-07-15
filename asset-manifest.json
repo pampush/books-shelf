@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/books-shelf/static/css/main.c8367e20.chunk.css",
+    "main.js": "/books-shelf/static/js/main.c1ee2024.chunk.js",
+    "main.js.map": "/books-shelf/static/js/main.c1ee2024.chunk.js.map",
+    "runtime-main.js": "/books-shelf/static/js/runtime-main.40a879b1.js",
+    "runtime-main.js.map": "/books-shelf/static/js/runtime-main.40a879b1.js.map",
+    "static/css/2.679831fc.chunk.css": "/books-shelf/static/css/2.679831fc.chunk.css",
+    "static/js/2.c6cde7bc.chunk.js": "/books-shelf/static/js/2.c6cde7bc.chunk.js",
+    "static/js/2.c6cde7bc.chunk.js.map": "/books-shelf/static/js/2.c6cde7bc.chunk.js.map",
+    "index.html": "/books-shelf/index.html",
+    "static/css/2.679831fc.chunk.css.map": "/books-shelf/static/css/2.679831fc.chunk.css.map",
+    "static/css/main.c8367e20.chunk.css.map": "/books-shelf/static/css/main.c8367e20.chunk.css.map",
+    "static/js/2.c6cde7bc.chunk.js.LICENSE.txt": "/books-shelf/static/js/2.c6cde7bc.chunk.js.LICENSE.txt",
+    "static/media/down-arrow.e5284d57.svg": "/books-shelf/static/media/down-arrow.e5284d57.svg",
+    "static/media/main.sass": "/books-shelf/static/media/pexels-yogendra-singh-731510.b90738ec.jpg",
+    "static/media/search.28b0ad10.svg": "/books-shelf/static/media/search.28b0ad10.svg",
+    "static/media/up-arrow.f2fb7a8d.svg": "/books-shelf/static/media/up-arrow.f2fb7a8d.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.40a879b1.js",
+    "static/css/2.679831fc.chunk.css",
+    "static/js/2.c6cde7bc.chunk.js",
+    "static/css/main.c8367e20.chunk.css",
+    "static/js/main.c1ee2024.chunk.js"
+  ]
+}
