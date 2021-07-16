@@ -1,11 +1,14 @@
 import React from 'react';
+import ObserverProvider from './components/ObserverProvider';
 
 import SearchingPage from './pages/SearchingPage';
 
 function App() {
   return (
     <div className="app">
-      <SearchingPage />
+      <ObserverProvider>
+        <SearchingPage />
+      </ObserverProvider>
     </div>
   );
 }

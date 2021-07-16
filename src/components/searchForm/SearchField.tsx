@@ -1,6 +1,5 @@
 import React from 'react';
 import { ReactComponent as SearchButton } from '../../assets/search.svg';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import InputContainer from './InputContainer';
@@ -14,11 +13,11 @@ interface StyledSearchFieldProps {
   size: keyof Size;
 }
 
-const StyledSearchField = styled.div`
+const StyledSearchField = styled.div<StyledSearchFieldProps>`
   display: flex;
   background-color: #ffffff;
   border-radius: 15px;
-  height: ${(props: StyledSearchFieldProps): string => {
+  height: ${(props): string => {
     const styles: Size = { small: '4rem', regular: '6rem' };
     return styles[props.size];
   }};
@@ -29,18 +28,20 @@ const StyledSearchField = styled.div`
 
 interface IconContainerProps {
   size: keyof Size;
+  disable: boolean;
 }
 
-const IconContainer = styled.span`
+const IconContainer = styled.span<IconContainerProps>`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  width: ${(props: IconContainerProps): string => {
+  width: ${(props): string => {
     const styles = { small: '4rem', regular: '6rem' };
     return styles[props.size];
   }};
   cursor: pointer;
+  pointer-events: ${(props): string => (props.disable ? 'none' : '')};
 `;
 
 const InputField = styled.input`
@@ -56,31 +57,43 @@ interface SearchFieldProps {
   placeholder: string;
   size?: keyof Size;
   required: boolean;
-  handleClick: (request: string) => void;
+  value: string;
+  onChange: (text: string) => void;
+  handleSubmit: (text: string) => void;
+  disable: boolean;
 }
 
 function SearchField({
   type,
   placeholder,
   required,
-  handleClick,
   size = 'regular',
+  value = '',
+  onChange,
+  handleSubmit,
+  disable,
 }: SearchFieldProps) {
-  const dispatch = useDispatch();
-  const [request, setRequest] = React.useState<string>('');
+  const keyHandler = (event: React.KeyboardEvent<HTMLInputElement> | globalThis.KeyboardEvent) => {
+    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+      if (disable) return;
+      event.preventDefault();
+      handleSubmit(value);
+    }
+  };
 
   return (
     <InputContainer>
       <StyledSearchField size={size} tabIndex={1}>
-        <IconContainer size={size} onClick={() => dispatch(handleClick(request))}>
+        <IconContainer size={size} onClick={() => handleSubmit(value)} disable={disable}>
           <SearchButton />
         </IconContainer>
         <InputField
           type={type}
-          value={request}
+          value={value}
           placeholder={placeholder}
-          onChange={(e) => setRequest(e.target.value)}
+          onChange={(e) => onChange(e.target.value)}
           required={required}
+          onKeyDown={keyHandler}
         />
       </StyledSearchField>
     </InputContainer>

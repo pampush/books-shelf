@@ -5,14 +5,17 @@ import Book from './Book';
 import { AppState } from '../redux/';
 
 function Shelf() {
-  const { items: books } = useSelector((state: AppState) => state.books);
-  console.log(books);
+  const { items: books, totalItems } = useSelector((state: AppState) => state.books);
 
   return (
     <>
-      {Object.values(books).map((book) => (
-        <Book key={book.id} {...book} />
-      ))}
+      <h3 className="shelf__counter">{totalItems} books in total</h3>
+      <main className="shelf">
+        {/* Somehow API returns books with the same ids, but rarely  */}
+        {Object.values(books).map((book, id) => (
+          <Book key={`${book.id}+${id}`} {...book} />
+        ))}
+      </main>
     </>
   );
 }

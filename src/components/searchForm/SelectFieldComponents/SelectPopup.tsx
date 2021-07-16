@@ -35,22 +35,22 @@ interface SPopup {
 function SPopup(props: SPopup) {
   const ref = React.useRef<HTMLDivElement>(null);
 
-  const handleClick = (e: globalThis.MouseEvent): void => {
+  const handleClick: React.MouseEventHandler<HTMLDivElement> = (e: React.MouseEvent): void => {
     if (props.open && ref.current && !ref.current.contains(e.target as HTMLElement))
       props.onClose();
   };
 
-  React.useEffect(() => {
-    document.addEventListener('click', handleClick);
-    return () => {
-      document.removeEventListener('click', handleClick);
-    };
-  }, [props.open]);
+  // React.useEffect(() => {
+  //   document.addEventListener('click', handleClick);
+  //   return () => {
+  //     document.removeEventListener('click', handleClick);
+  //   };
+  // }, [props.open]);
 
   return (
     <>
       {props.open && (
-        <div ref={ref} className={props.className}>
+        <div ref={ref} className={props.className} onClick={handleClick}>
           {props.items.map((item, i) => (
             <div key={`${item}+${i}`} onClick={() => props.handleSelect(item)}>
               {item}

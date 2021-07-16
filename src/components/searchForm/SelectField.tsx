@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 import { ReactComponent as ArrowDowm } from '../../assets/down-arrow.svg';
 import { ReactComponent as ArrowUp } from '../../assets/up-arrow.svg';
-import SelectPopup from './SelectFieldsComponents/SelectPopup';
-import Label from './SelectFieldsComponents/SelectLabel';
-import SelectFieldContainer from './SelectFieldsComponents/SelectFieldContainer';
+import SelectPopup from './SelectFieldComponents/SelectPopup';
+import Label from './SelectFieldComponents/SelectLabel';
+import SelectFieldContainer from './SelectFieldComponents/SelectFieldContainer';
 import { Size } from './types';
 import IconContainer from './IconContainer';
 import InputContainer from './InputContainer';
@@ -20,6 +20,8 @@ interface SelectFieldProps {
   label: string;
   options: string[];
   size?: keyof Size;
+  value: string;
+  onChange: (option: string) => void;
 }
 
 /**
@@ -27,26 +29,27 @@ interface SelectFieldProps {
  * @param param0 size - union of 'small', 'regular', 'default'
  * @returns
  */
-function Select({ label, options, size = 'regular' }: SelectFieldProps) {
-  const [optionItems] = React.useState(options);
-  const [selectedItem, setSelectedItem] = React.useState<string>('');
-  const [openItem, setOpenItems] = React.useState(false);
+function Select({ label, options, size = 'regular', value, onChange }: SelectFieldProps) {
+  const optionItems = React.useRef<string[]>(options);
+  const [openItem, setOpenItems] = React.useState<boolean>(false);
 
   return (
     <InputContainer>
+      <SelectPopup
+        items={optionItems.current}
+        className=""
+        open={openItem}
+        onClose={() => setOpenItems(false)}
+        handleSelect={(item: string) => {
+          onChange(item);
+          setOpenItems(false);
+        }}
+      />
       <SelectFieldContainer tabIndex={3} size={size} onClick={() => setOpenItems(true)}>
-        <SelectPopup
-          items={optionItems}
-          className=""
-          open={openItem}
-          onClose={() => setOpenItems(false)}
-          handleSelect={(item: string) => setSelectedItem(item)}
-        />
-
-        <Label selected={Boolean(selectedItem)} opened={openItem}>
+        <Label selected={Boolean(value)} opened={openItem}>
           {label}
         </Label>
-        <Text>{selectedItem}</Text>
+        <Text>{value}</Text>
         <IconContainer size={size}>{openItem ? <ArrowUp /> : <ArrowDowm />}</IconContainer>
       </SelectFieldContainer>
     </InputContainer>

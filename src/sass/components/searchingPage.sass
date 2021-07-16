@@ -10,6 +10,7 @@
     font-size: 1.6rem
   @include mixins.xs
     font-size: 1.4rem
+
 .searchform
   display: flex
   flex-wrap: wrap
@@ -18,7 +19,7 @@
   margin: 2rem
   border-radius: 1.5rem
   padding: 4rem 14rem
-  box-shadow: 0 0 .6rem 0 #000000
+  box-shadow: 0 0 1rem -0.4rem #000000
   background-image: url('../../assets/pexels-yogendra-singh-731510.jpg')
   background-position: center
   background-size: cover
@@ -32,6 +33,7 @@
   flex-basis: 100%
   width: 20rem
   margin: 1rem
+
 .select-field, .datalist-select-field
   width: 30rem
   margin: 1rem
@@ -39,3 +41,20 @@
     width: 24rem
   @include mixins.sm
     width: 18rem
+
+.search
+  &__loading
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 10rem
+  &__loading-icon
+    height: 4rem
+    animation: 1s linear infinite rotating
+
+@keyframes rotating
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+    

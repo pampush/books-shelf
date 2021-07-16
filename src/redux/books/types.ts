@@ -1,10 +1,15 @@
 /**
  * expected server response
  */
-export type BookRequestPayload = {
+export interface BookPayload {
   totalItems: number;
   items: BookType[];
-};
+}
+
+export interface BookResponse {
+  totalItems: number;
+  items: Array<{ id: string; volumeInfo: BookType }>;
+}
 
 export interface ImageLinks {
   smallThumbnail: string;
@@ -28,10 +33,16 @@ export enum BooksActionTypes {
   FETCH_REQUEST = '@@books/FETCH_REQUEST',
   FETCH_ERROR = '@@books/FETCH_ERROR',
   FETCH_SUCCESS = '@@books/FETCH_SUCCESS',
+  FETCH_ADD_ITEMS = '@@books/FETCH_ADD_ITEMS',
+  FETCH_TOTAL_ITEMS = '@@books/FETCH_TOTAL_ITEMS',
+  FETCH_PAGE = '@@books/FETCH_PAGE',
+  FETCH_ADD_PAGE = '@@books/FETCH_ADD_PAGE'
 }
 
 export interface BooksState {
   readonly items: Array<BookType>;
-  readonly isLoaded: boolean;
+  readonly loading: boolean;
   readonly errors?: Record<string, string>;
+  readonly totalItems: number;
+  readonly page: number;
 }

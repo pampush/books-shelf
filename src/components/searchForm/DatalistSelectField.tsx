@@ -4,23 +4,21 @@ import { ReactComponent as ArrowDowm } from '../../assets/down-arrow.svg';
 import { ReactComponent as ArrowUp } from '../../assets/up-arrow.svg';
 
 import InputContainer from './InputContainer';
-import Label from './SelectFieldsComponents/SelectLabel';
-import SelectFieldContainer from './SelectFieldsComponents/SelectFieldContainer';
-import SelectPopup from './SelectFieldsComponents/SelectPopup';
+import Label from './SelectFieldComponents/SelectLabel';
+import SelectFieldContainer from './SelectFieldComponents/SelectFieldContainer';
+import SelectPopup from './SelectFieldComponents/SelectPopup';
 import IconContainer from './IconContainer';
-
-/**
- * Custom input-datalist element. The elements can be resized, text search was implemented by
- * array prototype functions.
- */
 
 type Size = { small: string; regular: string };
 
 interface DatalistSelectFieldProps {
+  value: string;
   label: string;
   options: string[];
   placeholder: string;
   size?: keyof Size;
+  onChange: (category: string) => void;
+  handleSelect: (category: string) => void;
 }
 
 const OptionsFilter = styled.input`
@@ -30,35 +28,43 @@ const OptionsFilter = styled.input`
   outline: none;
 `;
 
+/**
+ * Custom input-datalist element. The elements can be resized, text search was implemented by
+ * array prototype functions.
+ */
 function DatalistSelectField({
+  value,
   placeholder,
   label,
   options,
   size = 'regular',
+  onChange,
+  handleSelect,
 }: DatalistSelectFieldProps) {
   const [openList, setOpenList] = React.useState<boolean>(false);
-  const [selectedItem] = React.useState<string>(placeholder);
-  const [filterText, setFilterText] = React.useState<string>('');
 
   return (
     <InputContainer>
+      <SelectPopup
+        items={options.filter((item) => item.includes(value))}
+        className=""
+        open={openList}
+        onClose={() => setOpenList(false)}
+        handleSelect={(item: string) => {
+          handleSelect(item);
+          setOpenList(false);
+        }}
+      />
       <SelectFieldContainer tabIndex={2} size={size} onClick={() => setOpenList(true)}>
-        <SelectPopup
-          items={options.filter((item) => item.includes(filterText))}
-          className=""
-          open={openList}
-          onClose={() => setOpenList(false)}
-          handleSelect={(item: string) => setFilterText(item)}
-        />
-
-        <Label selected={Boolean(selectedItem)} opened={openList}>
+        <Label selected={true} opened={openList}>
           {label}
         </Label>
 
         <OptionsFilter
-          value={filterText}
+          value={value}
+          placeholder={placeholder}
           onChange={(e) => {
-            setFilterText(e.target.value);
+            onChange(e.target.value);
           }}></OptionsFilter>
         <IconContainer size={size}>{openList ? <ArrowUp /> : <ArrowDowm />}</IconContainer>
       </SelectFieldContainer>
