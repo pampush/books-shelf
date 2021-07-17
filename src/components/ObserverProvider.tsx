@@ -37,7 +37,7 @@ function ObserverProvider({ children }: ObserverProviderProps) {
       console.log('unobserve');
       observer.unobserve(divRef.current as HTMLDivElement);
     };
-  });
+  }, []);
 
   // ????
   return React.cloneElement(children, { ref: divRef });

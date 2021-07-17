@@ -15,6 +15,7 @@ const SelectFieldContainer = styled.div`
   border-radius: 1.5rem;
   padding-left: 1rem;
   background-color: #ffffff;
+  box-shadow: 0 0 0.5rem -0.2rem #000000;
   height: ${(props: SelectFieldContainerProps): string => {
     const styles: Size = { small: '4rem', regular: '6rem' };
     return styles[props.size];

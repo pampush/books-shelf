@@ -1,0 +1,56 @@
+@use '../vars'
+@use '../mixins'
+
+.fbook
+  display: flex
+  font-size: 2rem
+  width: vars.$search-width-lg - 2rem
+  border-style: none
+  border-radius: .5rem
+  background-color: vars.$fbook-background-primary
+  @include mixins.sm
+    font-size: 1.8rem
+  @include mixins.xs
+    font-size: 1.6rem
+    
+  &__meta
+    padding: 2rem 2rem
+    flex-basis: 30%
+    background-color: vars.$fbook-background-secondary
+    border-radius: 0.5rem
+
+  &__info
+    padding: 2rem 2rem
+    flex-grow: 1
+  
+  &__description
+    height: 30rem
+    overflow-y: auto
+
+  &__author
+    font-weight: bold
+
+  &__cover
+    height: 26rem
+    width: 20rem
+    box-shadow: 0.1rem 0.1rem 0.6rem 0.1rem rgb(0 0 0 / 30%)
+    border-radius: .5rem 
+    @include mixins.sm
+      height: 18rem
+      width: 12rem
+    @include mixins.xs
+      height: 12rem
+      width: 9rem
+
+    &-container
+      display: flex
+      justify-content: center
+
+  &:hover
+    box-shadow: 0rem 0rem 1rem -0.5rem #000000
+
+  &__title
+    font-weight: bold
+
+  p
+    margin-top: 1rem

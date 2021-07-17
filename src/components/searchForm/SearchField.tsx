@@ -17,6 +17,7 @@ const StyledSearchField = styled.div<StyledSearchFieldProps>`
   display: flex;
   background-color: #ffffff;
   border-radius: 15px;
+  box-shadow: 0 0 1rem -0.5rem;
   height: ${(props): string => {
     const styles: Size = { small: '4rem', regular: '6rem' };
     return styles[props.size];
@@ -74,8 +75,8 @@ function SearchField({
   disable,
 }: SearchFieldProps) {
   const keyHandler = (event: React.KeyboardEvent<HTMLInputElement> | globalThis.KeyboardEvent) => {
-    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-      if (disable) return;
+    if (event.key === 'Enter' || event.key === 'NumpadEnter') {
+      if (disable) return; // prevent unstoppable submitting
       event.preventDefault();
       handleSubmit(value);
     }
