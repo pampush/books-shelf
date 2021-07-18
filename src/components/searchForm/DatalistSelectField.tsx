@@ -14,6 +14,7 @@ type Size = { small: string; regular: string };
 interface DatalistSelectFieldProps {
   value: string;
   label: string;
+  name: string;
   options: string[];
   placeholder: string;
   size?: keyof Size;
@@ -36,6 +37,7 @@ function DatalistSelectField({
   value,
   placeholder,
   label,
+  name = '',
   options,
   size = 'regular',
   onChange,
@@ -62,6 +64,7 @@ function DatalistSelectField({
 
         <OptionsFilter
           value={value}
+          name={name}
           placeholder={placeholder}
           onChange={(e) => {
             onChange(e.target.value);

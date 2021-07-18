@@ -5,7 +5,7 @@ import { BooksActions } from './actions';
 import { MAX_RESULTS } from '../_constants';
 //import { MAX_RESULTS } from '../_constants';
 
-const initialState: BooksState = {
+export const initialState: BooksState = {
   items: [],
   loading: false,
   errors: {},

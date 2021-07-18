@@ -3,8 +3,8 @@ import { Reducer } from 'redux';
 import { FiltersState, FiltersActionTypes } from './types';
 import { FiltersActions } from './actions';
 
-const initialState: FiltersState = {
-  sortBy: 'relevance',
+export const initialState: FiltersState = {
+  sortBy: 'Relevance',
   category: '',
   text: '',
 };

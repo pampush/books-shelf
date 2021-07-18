@@ -58,6 +58,7 @@ interface SearchFieldProps {
   placeholder: string;
   size?: keyof Size;
   required: boolean;
+  name: string;
   value: string;
   onChange: (text: string) => void;
   handleSubmit: (text: string) => void;
@@ -71,6 +72,7 @@ function SearchField({
   size = 'regular',
   value = '',
   onChange,
+  name = '',
   handleSubmit,
   disable,
 }: SearchFieldProps) {
@@ -91,6 +93,7 @@ function SearchField({
         <InputField
           type={type}
           value={value}
+          name={name}
           placeholder={placeholder}
           onChange={(e) => onChange(e.target.value)}
           required={required}

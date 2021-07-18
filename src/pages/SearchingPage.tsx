@@ -13,11 +13,17 @@ const AppContainerWithRef = React.forwardRef<HTMLDivElement, React.ComponentProp
 );
 
 // forwardRef typing bypass...
+
+/**
+ * First render is caused by Intersection Observer API.
+ * IDK how to deal with it
+ * @param props
+ * @param ref ref for Intersection Observer API
+ * @returns
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function SearchingPage(props: any, ref: any) {
   const { loading } = useSelector((state: AppState) => state.books);
-  const [, setOpenModal] = React.useState<boolean>(false);
-  //const [selectedBook, setSelectedBook] = React.useState<BookType>({} as BookType);
 
   const { content, open, closeModalWindow } = useModalContextValue();
 
@@ -33,7 +39,7 @@ function SearchingPage(props: any, ref: any) {
 
       <div className="search">
         <header className="header">
-          <h1 onClick={() => setOpenModal(true)}>Explore new horizons</h1>
+          <h1>Explore new horizons</h1>
           <div className="searchform">
             <SearchForm />
           </div>

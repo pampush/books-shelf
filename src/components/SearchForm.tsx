@@ -19,8 +19,8 @@ function SearchForm() {
       <div className="search-field">
         <SearchField
           type="text"
-          placeholder="
-          Search books"
+          name="booksearch"
+          placeholder="Search books"
           required={true}
           size="small"
           onChange={(text) => {
@@ -41,6 +41,7 @@ function SearchForm() {
           options={resources['datalist-options']}
           placeholder="All"
           size="small"
+          name="searchdatalist"
           value={category}
           onChange={(category) => {
             dispatch(filtersActions.setCategoryActionCreator(category));
@@ -56,6 +57,7 @@ function SearchForm() {
         <SelectField
           label="Sort by"
           size="small"
+          name="searchselect"
           options={resources['select-options']}
           value={sortBy}
           onChange={(option) => {

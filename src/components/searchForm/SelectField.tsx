@@ -10,7 +10,7 @@ import { Size } from './types';
 import IconContainer from './IconContainer';
 import InputContainer from './InputContainer';
 
-const Text = styled.div`
+const Text = styled.div<{ name: string }>`
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -21,6 +21,7 @@ interface SelectFieldProps {
   options: string[];
   size?: keyof Size;
   value: string;
+  name: string;
   onChange: (option: string) => void;
 }
 
@@ -29,7 +30,14 @@ interface SelectFieldProps {
  * @param param0 size - union of 'small', 'regular', 'default'
  * @returns
  */
-function Select({ label, options, size = 'regular', value, onChange }: SelectFieldProps) {
+function Select({
+  label,
+  options,
+  size = 'regular',
+  value,
+  onChange,
+  name = '',
+}: SelectFieldProps) {
   const optionItems = React.useRef<string[]>(options);
   const [openItem, setOpenItems] = React.useState<boolean>(false);
 
@@ -49,7 +57,7 @@ function Select({ label, options, size = 'regular', value, onChange }: SelectFie
         <Label selected={Boolean(value)} opened={openItem}>
           {label}
         </Label>
-        <Text>{value}</Text>
+        <Text name={name}>{value}</Text>
         <IconContainer size={size}>{openItem ? <ArrowUp /> : <ArrowDowm />}</IconContainer>
       </SelectFieldContainer>
     </InputContainer>

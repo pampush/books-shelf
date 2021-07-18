@@ -13,7 +13,8 @@ import {
   BooksAddItemsAction,
 } from './actions';
 import { BookType, BooksActionTypes, BookResponse } from './types';
-import { createBooksFromAPIResponse } from './typeGuard';
+import { createBooksFromAPIResponse } from './createBook';
+
 /**
  * action creator
  * @param books
@@ -85,6 +86,9 @@ export const fetchBooks = (action: ActionCreator<AnyAction>) => async (dispatch:
 
     dispatch(setTotalItemsActionCreator(appBooks.totalItems));
 
+    /**
+     * pagination logic
+     */
     dispatch(
       setPageActionCreator(
         appBooks.totalItems - MAX_RESULTS > 0
@@ -93,6 +97,11 @@ export const fetchBooks = (action: ActionCreator<AnyAction>) => async (dispatch:
       ),
     );
 
+    /**
+     * Depending on what was the action trigger, we invoke
+     * either initial fetch of less than MAX_RESULTS books (search form events)
+     * or add books to existing ones (endless scrolling at the bottom of the page).
+     */
     dispatch(action(appBooks.items));
   } catch (error) {
     if (axios.isAxiosError(error)) {
