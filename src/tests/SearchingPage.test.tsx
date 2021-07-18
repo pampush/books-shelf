@@ -21,9 +21,8 @@ describe('Searching Page', () => {
     window.IntersectionObserver = jest.fn().mockImplementation(intersectionObserverMock);
   });
 
-  const component = renderWithProvider(<SearchingPage />);
-
   test('renders h1 header', () => {
+    const component = renderWithProvider(<SearchingPage />);
     expect(component.getByText(/explore new horizons/i)).toBeInTheDocument();
   });
 
