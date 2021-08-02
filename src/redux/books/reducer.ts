@@ -3,7 +3,6 @@ import { Reducer } from 'redux';
 import { BooksActionTypes, BooksState } from './types';
 import { BooksActions } from './actions';
 import { MAX_RESULTS } from '../_constants';
-//import { MAX_RESULTS } from '../_constants';
 
 export const initialState: BooksState = {
   items: [],
